@@ -18,14 +18,18 @@ minetest.log(S("[MOD] lib_trm_support:  Legal Info: Copyright " .. lib_trm_suppo
 minetest.log(S("[MOD] lib_trm_support:  License: " .. lib_trm_support.license))
 
 
-	minetest.register_on_mods_loaded(
-		if minetest.global_exists("default") and minetest.get_modpath("default") then
-			dofile(MP.."lib_trm_support_default.lua")
+	minetest.register_on_mods_loaded(function()
+		if minetest.global_exists("default") then
+			if minetest.get_modpath("default") then
+				dofile(lib_trm_support.path_mod.."lib_trm_support_default.lua")
+			end
 		end
-		if minetest.global_exists("moreores") and minetest.get_modpath("moreores") then
-			dofile(MP.."lib_trm_support_moreores.lua")
+		if minetest.global_exists("moreores") then
+			if minetest.get_modpath("moreores") then
+				dofile(lib_trm_support.path_mod.."lib_trm_support_moreores.lua")
+			end
 		end
-	)	
+	end)	
 
 
 
